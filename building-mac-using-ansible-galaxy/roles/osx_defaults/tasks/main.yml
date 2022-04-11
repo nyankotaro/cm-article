@@ -1,0 +1,45 @@
+---
+# `defaults read`で設定値確認
+- name: 拡張子を表示
+  osx_defaults:
+    domain: "Apple Global Domain"
+    key: AppleShowAllExtensions
+    type: bool
+    value: true
+  notify: Restart Finder
+- name: Finderでパスバー表示
+  osx_defaults:
+    domain: com.apple.finder
+    key: ShowPathbar
+    type: bool
+    value: true
+  notify: Restart Finder
+- name: Finderでタブバー表示
+  osx_defaults:
+    domain: com.apple.finder
+    key: NSWindowTabbingShoudShowTabBarKey-com.apple.finder.TBrowserWindow
+    type: bool
+    value: true
+  notify: Restart Finder
+- name: Finderでステータスバー表示
+  osx_defaults:
+    domain: com.apple.finder
+    key: ShowStatusBar
+    type: bool
+    value: true
+  notify: Restart Finder
+
+- name: Dockで最近のアイテムを非表示
+  osx_defaults:
+    domain: com.apple.Dock
+    key: show-recents
+    type: bool
+    value: false
+  notify: Restart Dock
+- name: Dockを自動で隠す
+  osx_defaults:
+    domain: com.apple.Dock
+    key: autohide
+    type: bool
+    value: true
+  notify: Restart Dock

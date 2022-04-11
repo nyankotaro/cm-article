@@ -1,0 +1,6 @@
+---
+   - name: copy a directory
+     copy:
+       src: kana_hjkl.json
+       dest: ~/.config/karabiner/assets/complex_modifications/
+       mode: 0644

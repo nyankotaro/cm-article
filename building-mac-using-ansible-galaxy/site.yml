@@ -1,0 +1,96 @@
+- hosts: localhost
+  connection: local
+  become_user: HL01045
+  gather_facts: false
+
+  vars:
+    ansible_machine: arm64
+    ansible_user_id: takayama.kotaro
+    ansible_user_gid: 80
+
+    homebrew_cask_apps:
+      - 1password
+      - alfred
+      - clipy
+      - firefox
+      - google-chrome
+      - google-japanese-ime
+      - iterm2
+      - karabiner-elements
+      - licecap
+      - skitch
+      - slack
+      - snip
+      - visual-studio-code
+      - zoom
+
+    # homebrew_cask_uninstalled_apps:
+
+    homebrew_installed_packages:
+      - awscli
+      - bash-completion
+      - doxygen
+      - git
+      - git-lfs
+      - git-secrets
+      - jq
+      - nmap
+      - openssl
+      - ssh-copy-id
+      - tig
+      - tree
+      - wget
+      - zsh-syntax-highlighting
+
+    homebrew_uninstalled_packages:
+      - autoconf
+      - docker
+      - docker-compose
+      - docker-machine
+      - virtualbox
+
+    # mas_installed_apps:
+    #   - { id: 409183694, name: "Keynote" }
+
+    # mas_uninstalled_apps:
+    #   - { id: 682658836, name: "GarageBand" }
+
+    dockitems_persist:
+      - name: Launchpad
+        path: "/Applications/Launchpad.app/"
+        pos: 1
+      - name: Google Chrome
+        path: "/Applications/Google Chrome.app/"
+        pos: 2
+      - name: Slack
+        path: "/Applications/Slack.app/"
+        pos: 3
+      - name: Visual Studio Code
+        path: "/Applications/Visual Studio Code.app/"
+        pos: 4
+      - name: zoom.us
+        path: "/Applications/zoom.us.app/"
+        pos: 5
+      - name: iTerm
+        path: "/Applications/iTerm.app/"
+        pos: 6
+      - name: Activity Monitor
+        path: "/Applications/Utilities/Activity Monitor.app/"
+        pos: 7
+      - name: System Preferences
+        path: "/Applications/System Preferences.app/"
+        pos: 8
+
+  roles:
+    - role: geerlingguy.mac.homebrew
+      tags: homebrew
+    - role: geerlingguy.mac.dock
+      tags: dock
+    - role: fonts
+      tags: fonts
+    - role: karabiner-setting
+      tags: karabiner
+    - role: osx_defaults
+      tags: osx
+    # - role: geerlingguy.mac.mas
+    #   tags: mas

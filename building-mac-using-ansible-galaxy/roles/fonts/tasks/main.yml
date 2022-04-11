@@ -1,0 +1,32 @@
+---
+- name: Download UDEVGothic
+  get_url:
+    url: https://github.com/yuru7/udev-gothic/releases/download/{{ udev_version }}/UDEVGothic_{{ udev_version }}.zip
+    dest: ~/Downloads/
+
+- name: Unzip UDEVGothic
+  ansible.builtin.unarchive:
+    src: ~/Downloads/UDEVGothic_{{ udev_version }}.zip
+    dest: ~/Downloads/
+
+- name: Copy *.ttf to  ~/Library/Fonts/
+  copy:
+    src: "{{ item }}"
+    dest: ~/Library/Fonts
+  with_fileglob:
+    - ~/Downloads/UDEVGothic_{{ udev_version }}/*.ttf
+
+- name: Download Source Han Code JP
+  get_url:
+    url: https://github.com/adobe-fonts/source-han-code-jp/archive/refs/tags/{{ hancode_version }}.zip
+    dest: ~/Downloads/
+
+- name: Unzip Source Han Code JP
+  ansible.builtin.unarchive:
+    src: ~/Downloads/source-han-code-jp-{{ hancode_version }}.zip
+    dest: ~/Downloads/
+
+- name: Copy *.ttf to  ~/Library/Fonts/
+  copy:
+    src: ~/Downloads/source-han-code-jp-{{ hancode_version }}/OTC/SourceHanCodeJP.ttc
+    dest: ~/Library/Fonts
